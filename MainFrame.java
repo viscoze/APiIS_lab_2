@@ -1,15 +1,16 @@
 import java.awt.*;
-import java.util.Hashtable;
 import javax.swing.*;
 
 public class MainFrame {
 
     private JFrame frame;
+    private HTMLTableRender helperHTML;
     private final int FRAME_SIZE_X = 1024;
     private final int FRAME_SIZE_Y = 768;
 
     public MainFrame() {
         this.frame = new JFrame();
+        this.helperHTML = new HTMLTableRender();
 
         initializeFrameSettings();
         initializeUserInterface();
@@ -43,7 +44,7 @@ public class MainFrame {
         menuPanel.add(searchButton);
         menuPanel.add(deleteButton);
 
-        tablePanel.add(renderTable(getHeader(3)));
+        tablePanel.add(helperHTML.renderTable(helperHTML.getHeader(3)));
 
         JButton firstButton = new JButton("First Page");
         JButton lastButton  = new JButton("Last Page");
@@ -89,41 +90,5 @@ public class MainFrame {
         dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         dialog.setVisible(true);
         dialog.setResizable(false);
-    }
-
-    private JEditorPane renderTable(String tableHTML) {
-        JEditorPane table = new JEditorPane("text/html",tableHTML);
-        table.setEditable(false);
-        return table;
-    }
-
-    private String getHeader(int amountOfExams) {
-        return  "<table border='1' style=\"width:100%;text-align:center;\">\n" +
-                "    <tr>\n" +
-                "        <td rowspan=\"3\">Surname</td>\n" +
-                "        <td rowspan=\"3\">Group</td>\n" +
-                "        <td colspan=\"2\">Exams</td>\n" +
-                "    </tr>\n" + getExamsCol(amountOfExams) +
-                "</table>";
-    }
-
-    private String getExamsCol(int amountOfExams) {
-        String examsHTML = "";
-        for (int i = 0; i < amountOfExams; i++) {
-            examsHTML +="    <tr>" +
-                        "        <td colspan=\"2\">" + (i+1) + "</td>" +
-                        "    </tr>" +
-                        "    <tr>" +
-                        "        <td>Subject</td>" +
-                        "        <td>Mark</td>" +
-                        "    </tr>";
-        }
-        return examsHTML;
-    }
-
-    private String getStudentRow(String surname, String group, Hashtable<String, Integer> subjectToMark) {
-        String studentRow = "<tr><td>" + surname + "</td><td>" + group + "</td>";
-
-        return (studentRow+"</tr>");
     }
 }
