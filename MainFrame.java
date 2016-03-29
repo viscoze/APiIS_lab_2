@@ -4,13 +4,13 @@ import javax.swing.*;
 public class MainFrame {
 
     private JFrame frame;
-    private HTMLTableRender helperHTML;
+    private HTMLTablePanel helperHTML;
     private final int FRAME_SIZE_X = 1024;
     private final int FRAME_SIZE_Y = 768;
 
     public MainFrame() {
         this.frame = new JFrame();
-        this.helperHTML = new HTMLTableRender();
+        this.helperHTML = new HTMLTablePanel();
 
         initializeFrameSettings();
         initializeUserInterface();
@@ -30,7 +30,7 @@ public class MainFrame {
         JPanel mainPanel  = new JPanel(new BorderLayout(3,1));
         JPanel menuPanel  = new JPanel();
         JPanel pagePanel  = new JPanel();
-        JPanel tablePanel   = new JPanel();
+        JPanel tablePanel = new HTMLTablePanel();
 
         JButton createButton = new JButton("Create");
         JButton searchButton = new JButton("Search");
@@ -43,8 +43,6 @@ public class MainFrame {
         menuPanel.add(createButton);
         menuPanel.add(searchButton);
         menuPanel.add(deleteButton);
-
-        tablePanel.add(helperHTML.renderTable(helperHTML.getHeader(3)));
 
         JButton firstButton = new JButton("First Page");
         JButton lastButton  = new JButton("Last Page");
