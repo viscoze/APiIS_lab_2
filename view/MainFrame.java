@@ -1,3 +1,8 @@
+package view;
+
+import view.dialog.CreateDialog;
+import view.dialog.SearchAndDeleteDialog;
+
 import java.awt.*;
 import javax.swing.*;
 
@@ -5,8 +10,6 @@ public class MainFrame {
 
     private JFrame frame;
     private HTMLTablePanel helperHTML;
-    private final int FRAME_SIZE_X = 1024;
-    private final int FRAME_SIZE_Y = 768;
 
     public MainFrame() {
         this.frame = new JFrame();
@@ -19,7 +22,7 @@ public class MainFrame {
 
     private void initializeFrameSettings() {
         frame.setTitle("Table by Vlad");
-        frame.setSize(FRAME_SIZE_X,FRAME_SIZE_Y);
+        frame.setSize(1024,768);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
@@ -28,21 +31,37 @@ public class MainFrame {
 
     private void initializeUserInterface() {
         JPanel mainPanel  = new JPanel(new BorderLayout(3,1));
-        JPanel menuPanel  = new JPanel();
-        JPanel pagePanel  = new JPanel();
         JPanel tablePanel = new HTMLTablePanel();
 
-        JButton createButton = new JButton("Create");
-        JButton searchButton = new JButton("Search");
-        JButton deleteButton = new JButton("Delete");
+        JPanel menuPanel = initializeMenuPanel();
+        JPanel pagePanel = initializePaginatePanel();
 
-        createButton.addActionListener(e -> renderDialog(createButton.getText()));
-        searchButton.addActionListener(e -> renderDialog(searchButton.getText()));
-        deleteButton.addActionListener(e -> renderDialog(deleteButton.getText()));
+        mainPanel.add(menuPanel, BorderLayout.PAGE_START);
+        mainPanel.add(tablePanel, BorderLayout.CENTER);
+        mainPanel.add(pagePanel, BorderLayout.PAGE_END);
+
+        frame.add(mainPanel);
+    }
+
+    private JPanel initializeMenuPanel() {
+        JPanel menuPanel  = new JPanel();
+        SearchAndDeleteDialog searchAndDeleteDialog = new SearchAndDeleteDialog(frame);
+        CreateDialog createDialog = new CreateDialog(frame);
+
+        JButton createButton = new JButton("Add New Student");
+        JButton searchButton = new JButton("Search and Delete");
+
+        createButton.addActionListener(e -> createDialog.getDialog() );
+        searchButton.addActionListener(e -> searchAndDeleteDialog.getDialog() );
 
         menuPanel.add(createButton);
         menuPanel.add(searchButton);
-        menuPanel.add(deleteButton);
+
+        return menuPanel;
+    }
+
+    private JPanel initializePaginatePanel() {
+        JPanel pagePanel  = new JPanel();
 
         JButton firstButton = new JButton("First Page");
         JButton lastButton  = new JButton("Last Page");
@@ -54,11 +73,7 @@ public class MainFrame {
         pagePanel.add(nextButton);
         pagePanel.add(lastButton);
 
-        mainPanel.add(menuPanel, BorderLayout.PAGE_START);
-        mainPanel.add(tablePanel, BorderLayout.CENTER);
-        mainPanel.add(pagePanel, BorderLayout.PAGE_END);
-
-        frame.add(mainPanel);
+        return pagePanel;
     }
 
     private void initializeMenuBar() {
@@ -81,12 +96,4 @@ public class MainFrame {
         frame.setJMenuBar(menuBar);
     }
 
-    private void renderDialog(String title) {
-        JDialog dialog = new JDialog(frame,title,false);
-        dialog.setSize(FRAME_SIZE_X/2,FRAME_SIZE_Y/2);
-        dialog.setLocationRelativeTo(null);
-        dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        dialog.setVisible(true);
-        dialog.setResizable(false);
-    }
 }

@@ -5,7 +5,4 @@ public class TableProcessor {
 
     }
 
-    public String search(String numberOfGroup, String surname) {
-        return "!";
-    }
 }

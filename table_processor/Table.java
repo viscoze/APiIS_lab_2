@@ -1,18 +1,23 @@
 package table_processor;
 
-import java.util.Hashtable;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 
 public class Table {
 
-    private LinkedHashMap<String[],Hashtable<String,Integer>> mainTable;
+    private LinkedList<LinkedHashMap<String, Integer>> mainTable;
 
     public Table() {
-        this.mainTable = new LinkedHashMap<>();
+        this.mainTable = new LinkedList<>();
     }
 
-    public void add(String surname, String group, Hashtable<String, Integer> listOfSubjectsAndMarks) {
-        String[] surnameAndGroup = { surname, group };
-        mainTable.put(surnameAndGroup, listOfSubjectsAndMarks);
+    public void addStudent(String surname, Integer group, ArrayList<String> subjectsAndMarks) {
+
     }
+
+    public LinkedList<LinkedHashMap<String, Integer>> getAllStudent() {
+        return mainTable;
+    }
+
 }

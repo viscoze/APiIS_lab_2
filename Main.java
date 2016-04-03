@@ -1,5 +1,6 @@
 import table_processor.TableProcessor;
 import table_processor.Table;
+import view.MainFrame;
 
 import java.awt.*;
 
