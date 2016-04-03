@@ -1,5 +1,6 @@
 package view;
 
+import table_processor.TableProcessor;
 import view.dialog.CreateDialog;
 import view.dialog.SearchAndDeleteDialog;
 
@@ -10,10 +11,12 @@ public class MainFrame {
 
     private JFrame frame;
     private HTMLTablePanel helperHTML;
+    private TableProcessor tableProcessor;
 
-    public MainFrame() {
+    public MainFrame(TableProcessor tableProcessor) {
         this.frame = new JFrame();
         this.helperHTML = new HTMLTablePanel();
+        this.tableProcessor = tableProcessor;
 
         initializeFrameSettings();
         initializeUserInterface();
@@ -36,17 +39,17 @@ public class MainFrame {
         JPanel menuPanel = initializeMenuPanel();
         JPanel pagePanel = initializePaginatePanel();
 
-        mainPanel.add(menuPanel, BorderLayout.PAGE_START);
+        mainPanel.add(menuPanel,  BorderLayout.PAGE_START);
         mainPanel.add(tablePanel, BorderLayout.CENTER);
-        mainPanel.add(pagePanel, BorderLayout.PAGE_END);
+        mainPanel.add(pagePanel,  BorderLayout.PAGE_END);
 
         frame.add(mainPanel);
     }
 
     private JPanel initializeMenuPanel() {
         JPanel menuPanel  = new JPanel();
-        SearchAndDeleteDialog searchAndDeleteDialog = new SearchAndDeleteDialog(frame);
-        CreateDialog createDialog = new CreateDialog(frame);
+        SearchAndDeleteDialog searchAndDeleteDialog = new SearchAndDeleteDialog(frame, tableProcessor);
+        CreateDialog createDialog = new CreateDialog(frame, tableProcessor);
 
         JButton createButton = new JButton("Add New Student");
         JButton searchButton = new JButton("Search and Delete");

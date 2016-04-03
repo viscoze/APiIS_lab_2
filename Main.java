@@ -7,9 +7,9 @@ import java.awt.*;
 class Main {
 
     public Main() {
-
-        TableProcessor tableProcessor = new TableProcessor(new Table());
-        new MainFrame();
+        Table table = new Table();
+        TableProcessor tableProcessor = new TableProcessor(table);
+        new MainFrame(tableProcessor);
     }
 
     public static void main(String[] args) {

@@ -1,16 +1,19 @@
 package view.dialog;
 
+import table_processor.TableProcessor;
+
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.util.ArrayList;
 
 public class CreateDialog {
 
     private JDialog dialog;
+    private TableProcessor tableProcessor;
 
-    public CreateDialog(JFrame frame) {
+    public CreateDialog(JFrame frame, TableProcessor tableProcessor) {
         this.dialog = new JDialog(frame,"Search",false);
+        this.tableProcessor = tableProcessor;
         initializeDialog();
         initializeCreateDialog();
     }
