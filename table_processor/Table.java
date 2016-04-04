@@ -12,7 +12,7 @@ public class Table {
         this.mainTable = new LinkedList<>();
     }
 
-    public LinkedList<LinkedHashMap<String, String>> getAllStudent() {
+    public LinkedList<LinkedHashMap<String, String>> getAllStudents() {
         return mainTable;
     }
 

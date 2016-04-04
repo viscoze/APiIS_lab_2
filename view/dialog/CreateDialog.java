@@ -50,6 +50,7 @@ public class CreateDialog {
             String s = surnameText.getText();
             String g = groupText.getText();
             tableProcessor.addStudent(s,g,table.getModel());
+            tableProcessor.renderTable();
         });
 
         enterPanel.add(surname);

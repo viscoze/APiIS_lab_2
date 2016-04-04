@@ -10,13 +10,15 @@ import javax.swing.*;
 public class MainFrame {
 
     private JFrame frame;
-    private HTMLTablePanel helperHTML;
+    private HTMLTablePanel HTMLpanel;
     private TableProcessor tableProcessor;
 
     public MainFrame(TableProcessor tableProcessor) {
         this.frame = new JFrame();
-        this.helperHTML = new HTMLTablePanel();
-        this.tableProcessor = tableProcessor;
+//        this.HTMLpanel = new HTMLTablePanel();
+//        this.tableProcessor = tableProcessor;
+//
+        tableProcessor.setHTMLPanel(HTMLpanel);
 
         initializeFrameSettings();
         initializeUserInterface();
@@ -34,7 +36,9 @@ public class MainFrame {
 
     private void initializeUserInterface() {
         JPanel mainPanel  = new JPanel(new BorderLayout(3,1));
-        JPanel tablePanel = new HTMLTablePanel();
+        HTMLTablePanel tablePanel = new HTMLTablePanel();
+
+//        tablePanel.setTable(tableProcessor.getTable().getAllStudents());
 
         JPanel menuPanel = initializeMenuPanel();
         JPanel pagePanel = initializePaginatePanel();

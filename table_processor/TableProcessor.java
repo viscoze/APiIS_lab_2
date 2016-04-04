@@ -1,5 +1,6 @@
 package table_processor;
 
+import view.HTMLTablePanel;
 
 import javax.swing.*;
 import javax.swing.table.TableModel;
@@ -10,14 +11,27 @@ import java.util.LinkedHashMap;
 public class TableProcessor {
 
     private Table  table;
+    private HTMLTablePanel HTMLpanel;
     private JPanel panel;
 
     public TableProcessor(Table table) {
         this.table = table;
     }
 
+    public void setHTMLPanel(HTMLTablePanel panel) {
+        this.HTMLpanel = panel;
+    }
+
     public void setPanel(JPanel panel) {
         this.panel = panel;
+    }
+
+    public void renderTable() {
+        HTMLpanel.setTable(table.getAllStudents());
+    }
+
+    public Table getTable() {
+        return table;
     }
 
     public void addStudent(String surname, String group, TableModel tableModel) {
@@ -42,5 +56,6 @@ public class TableProcessor {
         LinkedHashMap<String, String> student = table.getStudentByIndex(indexOfStudent);
 
     }
+
 
 }
