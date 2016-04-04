@@ -2,11 +2,10 @@ package table_processor;
 
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.Vector;
 
 public class TableProcessor {
 
@@ -21,24 +20,27 @@ public class TableProcessor {
         this.panel = panel;
     }
 
-    public void addStudent(String surname, Integer group, DefaultTableModel tableModel) {
+    public void addStudent(String surname, String group, TableModel tableModel) {
         ArrayList<String> subjectsAndMarks = new ArrayList<>();
-        Vector tableData = tableModel.getDataVector();
 
-        for (int i = 0; i < tableModel.getRowCount(); i++) {
-            Vector tableDatum = (Vector)tableData.elementAt(i);
-            subjectsAndMarks.add(tableDatum.elementAt(0).toString());
-            subjectsAndMarks.add(tableDatum.elementAt(1).toString());
+        for (int i = 0; i < tableModel.getRowCount(); i++)
+            for (int j = 0; j < tableModel.getColumnCount(); j++) {
+                String data = (String) tableModel.getValueAt(i, j);
+                if (data == null) break;
+                subjectsAndMarks.add((String) tableModel.getValueAt(i, j));
+            }
+
+        for (String item:subjectsAndMarks) {
+            System.out.println(item);
         }
-
-        System.out.println("Surname: " + surname + "Subject:" + subjectsAndMarks.get(0) + "Mark" + subjectsAndMarks.get(1));
 
         table.addStudent(surname, group, subjectsAndMarks);
    }
 
-    public void search(String surname, Integer group) {
+    public void search(String surname, String group) {
         int indexOfStudent = table.searchStudentByGroup(surname, group);
-        LinkedHashMap<String, Integer> student = table.getStudentByIndex(indexOfStudent);
+        LinkedHashMap<String, String> student = table.getStudentByIndex(indexOfStudent);
 
     }
+
 }

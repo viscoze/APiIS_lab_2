@@ -6,22 +6,22 @@ import java.util.LinkedList;
 
 public class Table {
 
-    private LinkedList<LinkedHashMap<String, Integer>> mainTable;
+    private LinkedList<LinkedHashMap<String, String>> mainTable;
 
     public Table() {
         this.mainTable = new LinkedList<>();
     }
 
-    public LinkedList<LinkedHashMap<String, Integer>> getAllStudent() {
+    public LinkedList<LinkedHashMap<String, String>> getAllStudent() {
         return mainTable;
     }
 
-    public void addStudent(String surname, Integer group, ArrayList<String> subjectsAndMarks) {
-        LinkedHashMap<String, Integer> student = new LinkedHashMap<>();
+    public void addStudent(String surname, String group, ArrayList<String> subjectsAndMarks) {
+        LinkedHashMap<String, String> student = new LinkedHashMap<>();
 
         student.put(surname, group);
         for(int i = 0; i < subjectsAndMarks.size(); i+=2)
-            student.put(subjectsAndMarks.get(i), Integer.parseInt(subjectsAndMarks.get(i+1)));
+            student.put(subjectsAndMarks.get(i), subjectsAndMarks.get(i+1));
 
         mainTable.add(student);
     }
@@ -30,12 +30,12 @@ public class Table {
         mainTable.remove(index);
     }
 
-    public LinkedHashMap<String, Integer> getStudentByIndex(int index) {
+    public LinkedHashMap<String, String> getStudentByIndex(int index) {
         return mainTable.get(index);
     }
 
-    public int searchStudentByGroup(String surname, Integer group) {
-        for (LinkedHashMap<String, Integer> student:mainTable)
+    public int searchStudentByGroup(String surname, String group) {
+        for (LinkedHashMap<String, String> student:mainTable)
             if (student.containsKey(surname) && student.containsValue(group))
                 return mainTable.indexOf(student);
 

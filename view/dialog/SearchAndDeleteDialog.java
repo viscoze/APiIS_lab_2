@@ -92,7 +92,7 @@ public class SearchAndDeleteDialog {
 
         search.addActionListener(e -> {
             String s  = surnameText.getText();
-            Integer g = Integer.parseInt(surnameText.getText());
+            String g = surnameText.getText();
             tableProcessor.setPanel(resultPanel);
             tableProcessor.search(s,g);
         });

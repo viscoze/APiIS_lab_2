@@ -47,9 +47,9 @@ public class CreateDialog {
         JButton addStudent = new JButton("Add new Student to Table");
 
         addStudent.addActionListener(e -> {
-            String s = surname.getText();
-            Integer g = Integer.parseInt(group.getText().trim());
-            tableProcessor.addStudent(s,g,(DefaultTableModel) table.getModel());
+            String s = surnameText.getText();
+            String g = groupText.getText();
+            tableProcessor.addStudent(s,g,table.getModel());
         });
 
         enterPanel.add(surname);
@@ -68,7 +68,7 @@ public class CreateDialog {
 
     private JTable initializeTable() {
         String columnNames[]    = { "Subject", "Mark" };
-        DefaultTableModel model = new DefaultTableModel(columnNames, 6);
+        DefaultTableModel model = new DefaultTableModel(columnNames, 8);
         JTable table            = new JTable(model);
 
         return table;
