@@ -40,6 +40,7 @@ public class MainFrame {
         JPanel menuPanel = initializeMenuPanel();
         JPanel pagePanel = initializePaginatePanel();
 
+        tableProcessor.setHTMLPanel(tablePanel);
         tablePanel.setTable(tableProcessor.getTable().getAllStudents());
 
         mainPanel.add(menuPanel,  BorderLayout.PAGE_START);

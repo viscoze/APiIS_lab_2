@@ -20,10 +20,10 @@ public class Table {
         ArrayList<String> subjectList = new ArrayList<>();
         subjectList.add("APiIS");
         subjectList.add("10");
-        subjectList.add("APiIS");
-        subjectList.add("10");
-        subjectList.add("APiIS");
-        subjectList.add("10");
+        subjectList.add("AAAAA");
+        subjectList.add("9");
+        subjectList.add("BBBBB");
+        subjectList.add("8");
 
         addStudent(surname, group, subjectList);
     }

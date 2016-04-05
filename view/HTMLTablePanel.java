@@ -50,7 +50,7 @@ public class HTMLTablePanel extends JPanel {
     }
 
     private int getMaxAmountOfExams(LinkedList<LinkedHashMap<String, String>> mainTable) {
-        return mainTable.getFirst().size();
+        return mainTable.getFirst().size() - 1;
     }
 
     private String getHeader(int amountOfExams) {
