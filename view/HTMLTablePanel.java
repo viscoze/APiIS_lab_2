@@ -24,11 +24,15 @@ public class HTMLTablePanel extends JPanel {
         String studentsTable = "<html><table border=1 cellpadding=5 width=744px>"
                                + getHeader(getMaxAmountOfExams(mainTable));
 
-        for(LinkedHashMap<String, String> sm:mainTable) {
-            String surname = (String)sm.keySet().toArray()[0];
-            String group   = sm.get(surname);
-            sm.remove(surname);
-            studentsTable += getStudentRow(surname,group,sm);
+        try {
+            for (LinkedHashMap<String, String> sm : mainTable) {
+                String surname = (String) sm.keySet().toArray()[0];
+                String group = sm.get(surname);
+                sm.remove(surname);
+                studentsTable += getStudentRow(surname, group, sm);
+            }
+        } catch (NullPointerException npe) {
+            npe.getStackTrace();
         }
 
         return studentsTable + "</table></html>";

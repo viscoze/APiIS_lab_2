@@ -10,6 +10,22 @@ public class Table {
 
     public Table() {
         this.mainTable = new LinkedList<>();
+        test();
+    }
+
+    private void test() {
+        String surname = "Oganov";
+        String group   = "421701";
+
+        ArrayList<String> subjectList = new ArrayList<>();
+        subjectList.add("APiIS");
+        subjectList.add("10");
+        subjectList.add("APiIS");
+        subjectList.add("10");
+        subjectList.add("APiIS");
+        subjectList.add("10");
+
+        addStudent(surname, group, subjectList);
     }
 
     public LinkedList<LinkedHashMap<String, String>> getAllStudents() {

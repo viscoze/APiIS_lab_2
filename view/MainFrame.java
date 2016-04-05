@@ -15,9 +15,8 @@ public class MainFrame {
 
     public MainFrame(TableProcessor tableProcessor) {
         this.frame = new JFrame();
-//        this.HTMLpanel = new HTMLTablePanel();
-//        this.tableProcessor = tableProcessor;
-//
+        this.tableProcessor = tableProcessor;
+
         tableProcessor.setHTMLPanel(HTMLpanel);
 
         initializeFrameSettings();
@@ -38,10 +37,10 @@ public class MainFrame {
         JPanel mainPanel  = new JPanel(new BorderLayout(3,1));
         HTMLTablePanel tablePanel = new HTMLTablePanel();
 
-//        tablePanel.setTable(tableProcessor.getTable().getAllStudents());
-
         JPanel menuPanel = initializeMenuPanel();
         JPanel pagePanel = initializePaginatePanel();
+
+        tablePanel.setTable(tableProcessor.getTable().getAllStudents());
 
         mainPanel.add(menuPanel,  BorderLayout.PAGE_START);
         mainPanel.add(tablePanel, BorderLayout.CENTER);
