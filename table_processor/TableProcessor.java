@@ -44,10 +44,6 @@ public class TableProcessor {
                 subjectsAndMarks.add((String) tableModel.getValueAt(i, j));
             }
 
-        for (String item:subjectsAndMarks) {
-            System.out.println(item);
-        }
-
         table.addStudent(surname, group, subjectsAndMarks);
    }
 
@@ -55,6 +51,10 @@ public class TableProcessor {
         int indexOfStudent = table.searchStudentByGroup(surname, group);
         LinkedHashMap<String, String> student = table.getStudentByIndex(indexOfStudent);
 
+    }
+
+    public void remove(int index) {
+        table.deleteStudent(index);
     }
 
 
